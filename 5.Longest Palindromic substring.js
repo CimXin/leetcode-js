@@ -18,15 +18,13 @@ var longestPalindrome = function(s) {
         if(str.length > result.length){
             result = str;
         }
-        var str = expandFromCenterAndCheckForPalindrome(s,left,right + 1);
+        str = expandFromCenterAndCheckForPalindrome(s,left,right + 1);
         if(str.length > result.length){
             result = str;
         }
     }
     return result;
 };
-
-
 
 var expandFromCenterAndCheckForPalindrome = function(s, left, right){
     while(left >= 0 && right < s.length && s[left] === s[right]){
