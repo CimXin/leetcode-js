@@ -1,0 +1,11 @@
+{
+    "packages": "packages",
+    "version": "2.4.3",
+    "name": "leetCode",
+    "id": "09a06fd2-43ac-4860-8d8c-c5df06ff167f",
+    "isNew": false,
+    "dependencies": {},
+    "devDependencies": {
+        "typescript": "^4.2.3"
+    }
+}
