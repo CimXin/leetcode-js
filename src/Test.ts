@@ -1,41 +1,34 @@
-function palindromePairs(words: string[]): number[][] {
-    let map = new Map<string, number>();
+import { TreeNode } from "./Tool/TreeNode";
 
-    for (let i = 0; i < words.length; i++) {
-        map.set(words[i].split("").reverse().join(""), i);
+function isSymmetric(root: TreeNode | null): boolean {
+    /**
+        解法一 广度优先遍历，统计每层的元素，然后看每层元素是否对称
+        解法二 将树拆成2个子树，然后左子树按照左中右方式遍历，右子树按照右中左方式遍历
+     */
+    if (!root) {
+        return false;
     }
-    let res = [];
-    for (let i = 0; i < words.length; i++) {
-        let word = words[i];
-        if (check(word) && map.has('') && word !== '') {
-            res.push([map.get(''), i]);
-        }
 
-        for (let j = 0; j < word.length; j++) {
-            let left = word.substring(0, j);
-            let right = word.substring(j, word.length);
-
-            if (check(left) && map.has(right) && map.get(right) != i) {
-                res.push([map.get(right), i]);
-            }
-            if (check(right) && map.has(left) && map.get(left) != i) {
-                res.push([i, map.get(left)]);
-            }
-        }
-    }
-    return res;
+    return dfs(root.left, root.right);
 };
 
-function check(str: string) {
-    let left = 0;
-    let right = str.length - 1;
-    while (left < right) {
-        if (str.charAt(left) != str.charAt(right)) {
-            return false;
-        }
-        left++; right--;
+function dfs(tree1: TreeNode, tree2: TreeNode) {
+
+    if (!tree1 && !tree2) {
+        return true;
     }
-    return true;
+    if ((tree1 && !tree2) || (tree2 && !tree1)) {
+        return false;
+    }
+    if (tree1.val != tree2.val) {
+        return false;
+    }
+
+    let left = dfs(tree1.left, tree2.right);
+    let right = dfs(tree1.right, tree2.left);
+    return left && right;
 }
 
-palindromePairs(["abcd", "dcba", "lls", "s", "sssll"]);
+// let node = TreeNode.conver([1, 2, 2, 3, 4, 4, 3]);
+let node = TreeNode.conver([1, 2, 3]);
+isSymmetric(node);
