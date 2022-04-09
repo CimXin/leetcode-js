@@ -9,6 +9,31 @@
 			],
 			"group": "build",
 			"label": "tsc: 构建 - tsconfig.json"
+		},
+		{
+			"type": "shell",
+			"label": "Build with Clang",
+			"command": "gcc",
+			"args": [
+				// "-fdiagnostics-color=always",
+				"${fileDirname}/${fileBasename}",
+				// "-g",
+				// "${file}",
+				"-o",
+				"${fileDirname}/${fileBasenameNoExtension}",
+				"--debug"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			// "detail": "编译器: /usr/bin/clang"
 		}
 	]
 }
