@@ -1,13 +1,17 @@
 
 /** 用堆实现的优先队列 */
 export class Heap<T> {
-    public datas: T[] = [];
+    private datas: T[] = [];
     public constructor(public compare: Function) {
 
     }
 
     public get size() {
         return this.datas.length;
+    }
+
+    public get data() {
+        return this.datas;
     }
 
     public push(data: T) {
