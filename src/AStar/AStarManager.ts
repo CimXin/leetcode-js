@@ -126,7 +126,8 @@ class AStarManager {
         }
 
         let curNode = this._nodes[posY][posX];
-        if (curNode == null || curNode.type == ENodeType.Wall || this._openList.data.includes(curNode) || this._closeList.includes(curNode)) {
+        if (curNode == null || curNode.type == ENodeType.Wall ||
+             this._openList.data.includes(curNode) || this._closeList.includes(curNode)) {
             return;
         }
 

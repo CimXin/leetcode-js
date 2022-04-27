@@ -1,40 +1,29 @@
-function Foo() {
-    Foo.getValue = function () {
-        console.log(1);
-    }
-    this.getValue = function () {
-        console.log(2);
+class A {
+    name = "mic";
+    log() {
+        console.log(this.name);
     }
 }
-
-Foo.prototype.getValue = function () {
-    console.log(3);
+class B extends A {
+    name = "NB"
 }
 
-Foo.getValue = function () {
-    console.log(4);
-}
+// function FUNC() {
+//     this.name = "FUNC";
+//     this.log = function () {
+//         console.log(this.name);
+//     }
+// }
 
-Foo.getValue();  //静态方法 4
-
-let obj = new Foo();
-obj.getValue();   //2
-Foo.getValue();  //静态方法被重写 1
-
-function Foo2() {
-    Foo2.getValue = function () {
-        console.log(5);
-    }
-    this.getValue = function(){
-        // super.getValue();
-        this.prototype.getValue();
-        console.log(6);
+let Func = {
+    name: "FUNC",
+    log: function () {
+        console.log(this.name);
     }
 }
 
-Foo2.prototype = new Foo();  //Foo2 继承Foo
-let obj2 = new Foo2();
-obj2.getValue();    //2
-Foo2.getValue();    //5
+Func.log();
+var name = "GLOBAL";
 
-Foo.getValue();    //1
+var a = Func.log;
+a();

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试网页</title>
+</head>
+
+<body>
+    <script>
+        // const heapdump = require('heapdump');
+        // 普通单层调用
+        let array_a = [];
+        function aoo1() {
+            for (let i = 0; i < 10000; i++) {
+                array_a.push({ a: 'pp' });
+            }
+        }
+        aoo1();
+        // 两层嵌套调用
+        let array_b = [];
+        function boo1() {
+            function boo2() {
+                for (let i = 0; i < 20000; i++) {
+                    array_b.push({ b: 'pp' });
+                }
+            }
+            boo2();
+        }
+        boo1();
+        // 三层嵌套调用
+        let array_c = [];
+        function coo1() {
+            function coo2() {
+                function coo3() {
+                    for (let i = 0; i < 30000; i++) {
+                        array_c.push({ c: 'pp' });
+                    }
+                }
+                coo3();
+            }
+            coo2();
+        }
+        coo1();
+        // 两层嵌套多个调用
+        let array_d = [];
+        function doo1() {
+            function doo2_1() {
+                for (let i = 0; i < 20000; i++) {
+                    array_d.push({ d: 'pp' });
+                }
+            }
+            doo2_1();
+            function doo2_2() {
+                for (let i = 0; i < 20000; i++) {
+                    array_d.push({ d: 'pp' });
+                }
+            }
+            doo2_2();
+        }
+        doo1();
+        // heapdump.writeSnapshot('end.heapsnapshot'); // 记录应用结束时的内存dump
+    </script>
+</body>
+
+</html>
